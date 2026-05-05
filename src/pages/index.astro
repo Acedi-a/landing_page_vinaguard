@@ -1,7 +1,5 @@
 ---
-import tarijaMap from '../data/tarijaMunicipios.json';
-
-const tarijaMunicipalities = tarijaMap.municipalities;
+import TarijaMap3D from '../components/TarijaMap3D.astro';
 ---
 
 <!DOCTYPE html>
@@ -1296,85 +1294,7 @@ const tarijaMunicipalities = tarijaMap.municipalities;
 
         <!-- Right Side: Real Tarija Municipal Coverage Map -->
         <div class="lg:col-span-6 flex flex-col justify-center">
-          <div class="bg-white p-6 rounded-3xl border border-gray-100 shadow-xl space-y-4">
-            <h3 class="text-xs font-bold text-gray-400 uppercase tracking-wider text-center">Toca un municipio para consultar disponibilidad logística</h3>
-            
-            <!-- Map Container -->
-            <div class="relative max-w-[430px] mx-auto flex justify-center items-center">
-              <svg
-                class="w-full h-auto"
-                viewBox={tarijaMap.viewBox}
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                role="img"
-                aria-label="Mapa municipal del departamento de Tarija"
-              >
-                <rect width="420" height="277.3" rx="18" fill="#f8faf7" />
-
-                {tarijaMunicipalities.map((municipio) => (
-                  <path
-                    id={`svg-map-${municipio.slug}`}
-                    class="tarija-municipality cursor-pointer transition-all duration-200 hover:brightness-95 focus:outline-none"
-                    d={municipio.path}
-                    fill={municipio.fill}
-                    stroke={municipio.stroke}
-                    stroke-width="1.4"
-                    vector-effect="non-scaling-stroke"
-                    data-region={municipio.slug}
-                    data-default-fill={municipio.fill}
-                    data-default-stroke={municipio.stroke}
-                    tabindex="0"
-                    role="button"
-                    aria-label={`${municipio.name}, provincia ${municipio.province}`}
-                  >
-                    <title>{municipio.name}</title>
-                  </path>
-                ))}
-
-                {tarijaMunicipalities
-                  .filter((municipio) => municipio.status !== 'expansion')
-                  .map((municipio) => (
-                    <circle
-                      cx={municipio.labelX}
-                      cy={municipio.labelY - 8}
-                      r="3.2"
-                      fill={municipio.stroke}
-                      stroke="#ffffff"
-                      stroke-width="1.5"
-                      class="pointer-events-none"
-                    />
-                  ))}
-
-                <g class="pointer-events-none">
-                  {tarijaMunicipalities.map((municipio) => (
-                    <text
-                      class="tarija-label"
-                      x={municipio.labelX}
-                      y={municipio.labelY}
-                      text-anchor="middle"
-                      fill="#334155"
-                      stroke="#ffffff"
-                      stroke-width="3"
-                      paint-order="stroke"
-                      font-family="Inter, sans-serif"
-                      font-size="8.5"
-                      font-weight="800"
-                      data-region={municipio.slug}
-                    >
-                      {municipio.name}
-                    </text>
-                  ))}
-                </g>
-              </svg>
-            </div>
-
-            <!-- Hint indicators -->
-            <div class="flex justify-center gap-4 text-[10px] text-gray-500 font-semibold border-t border-gray-100 pt-3">
-              <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 bg-purple-100 border border-purple-500 rounded"></span> Inmediata</span>
-              <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 bg-amber-100 border border-amber-500 rounded"></span> &lt; 24 h</span>
-              <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 bg-slate-100 border border-slate-300 rounded"></span> Expansión</span>
-            </div>
-          </div>
+          <TarijaMap3D />
         </div>
       </div>
 
@@ -2282,52 +2202,22 @@ const tarijaMunicipalities = tarijaMap.municipalities;
       }
     };
 
-    function selectMapRegion(regionId) {
+    function selectMapRegion(regionId, options = {}) {
       const data = coverageRegions[regionId] || coverageRegions.general;
-      const paths = document.querySelectorAll('.tarija-municipality');
-      const labels = document.querySelectorAll('.tarija-label');
-
-      paths.forEach(pathEl => {
-        pathEl.setAttribute('fill', pathEl.dataset.defaultFill);
-        pathEl.setAttribute('stroke', pathEl.dataset.defaultStroke);
-        pathEl.style.fillOpacity = '0.9';
-        pathEl.style.strokeWidth = '1.4';
-        pathEl.style.filter = 'none';
-      });
-
-      labels.forEach(labelEl => {
-        labelEl.setAttribute('fill', '#334155');
-        labelEl.setAttribute('font-size', '8.5');
-      });
-
-      const selectedPath = document.querySelector(`.tarija-municipality[data-region="${regionId}"]`);
-      if (selectedPath) {
-        selectedPath.setAttribute('stroke', data.activeStroke || '#14532d');
-        selectedPath.style.fillOpacity = '1';
-        selectedPath.style.strokeWidth = '3';
-        selectedPath.style.filter = 'drop-shadow(0 8px 12px rgba(15, 23, 42, 0.18))';
-      }
-
-      const selectedLabel = document.querySelector(`.tarija-label[data-region="${regionId}"]`);
-      if (selectedLabel) {
-        selectedLabel.setAttribute('fill', data.activeStroke || '#14532d');
-        selectedLabel.setAttribute('font-size', '9.5');
-      }
 
       document.getElementById('cobertura-active-name').innerText = data.name;
       document.getElementById('cobertura-active-desc').innerText = data.desc;
       document.getElementById('cobertura-active-time').innerText = data.time;
       document.getElementById('cobertura-active-area').innerText = data.area;
+
+      if (!options.skipMapSync) {
+        window.dispatchEvent(new CustomEvent('tarija-map:select-region', { detail: { region: regionId } }));
+      }
     }
 
-    document.querySelectorAll('.tarija-municipality').forEach(pathEl => {
-      pathEl.addEventListener('click', () => selectMapRegion(pathEl.dataset.region));
-      pathEl.addEventListener('keydown', event => {
-        if (event.key === 'Enter' || event.key === ' ') {
-          event.preventDefault();
-          selectMapRegion(pathEl.dataset.region);
-        }
-      });
+    window.selectMapRegion = selectMapRegion;
+    window.addEventListener('tarija:select', event => {
+      selectMapRegion(event.detail.region, { skipMapSync: true });
     });
 
 
