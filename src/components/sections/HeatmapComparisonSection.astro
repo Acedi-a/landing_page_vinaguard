@@ -1,0 +1,72 @@
+<!-- ================= MAPA DE CALOR / COMPARACIÓN VISUAL (COMPARE SLIDER) ================= -->
+  <section id="demostracion" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <span class="text-emerald-700 font-bold text-xs uppercase tracking-widest block"><i class="fas fa-images mr-1"></i> Demostración Visual</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 font-serif">
+          Visualiza el problema antes de que se convierta en pérdida
+        </h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-emerald-600 to-purple-600 mx-auto rounded-full"></div>
+        <p class="text-gray-600 text-base sm:text-lg">
+          Arrastra el deslizador en el centro para comparar cómo se ve un viñedo convencional frente al mapa de calor generado con la Inteligencia Artificial de ViñaGuard.
+        </p>
+      </div>
+
+      <!-- Before/After Slider Component -->
+      <div class="max-w-4xl mx-auto">
+        <div class="comparison-slider-container w-full h-[300px] sm:h-[400px] md:h-[500px] rounded-2xl shadow-2xl select-none" id="vine-compare-slider">
+          
+          <!-- Normal View Image (Right/Background) -->
+          <img src="/images/viñedo_normal.png" alt="Vista normal del viñedo" class="absolute inset-0 w-full h-full object-cover pointer-events-none" />
+          <div class="absolute bottom-4 right-4 bg-gray-900/85 backdrop-blur text-white text-xs px-3 py-1.5 rounded-lg border border-gray-700 font-bold tracking-wide z-10">
+            Vista Normal (Cámara Aérea)
+          </div>
+
+          <!-- Heatmap View Image (Left/Clipped) -->
+          <div class="comparison-slider-img-overlay" id="compare-overlay-wrapper">
+            <!-- Ensure image has same dimensions as parent container -->
+            <img src="/images/viñedo_map.png" alt="Mapa de calor ViñaGuard" class="absolute inset-0 w-[100vw] max-w-none h-full object-cover pointer-events-none" id="compare-overlay-img" />
+          </div>
+
+          <div class="absolute bottom-4 left-4 bg-purple-900/85 backdrop-blur text-white text-xs px-3 py-1.5 rounded-lg border border-purple-500/50 font-bold tracking-wide z-10">
+            Mapa de Calor ViñaGuard AI
+          </div>
+
+          <!-- Handle slider bar -->
+          <div class="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize flex items-center justify-center z-20" id="compare-handle" style="left: 50%;">
+            <div class="w-10 h-10 bg-purple-700 text-white rounded-full flex items-center justify-center shadow-2xl border-2 border-white hover:scale-110 active:scale-95 transition-transform duration-150">
+              <i class="fas fa-arrows-left-right text-xs"></i>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Legend for the Heatmap -->
+        <div class="mt-6 flex flex-wrap justify-center items-center gap-6 p-4 bg-gray-50 border border-gray-100 rounded-2xl max-w-2xl mx-auto">
+          <span class="text-xs font-bold text-gray-500 uppercase tracking-wider">Leyenda de Alertas:</span>
+          
+          <div class="flex items-center gap-2 text-xs">
+            <span class="w-4.5 h-4.5 rounded bg-emerald-500 border border-emerald-600 shadow-sm"></span>
+            <span class="font-semibold text-gray-700">Zona Saludable</span>
+          </div>
+
+          <div class="flex items-center gap-2 text-xs">
+            <span class="w-4.5 h-4.5 rounded bg-yellow-400 border border-yellow-500 shadow-sm"></span>
+            <span class="font-semibold text-gray-700">Riesgo Moderado (Estrés)</span>
+          </div>
+
+          <div class="flex items-center gap-2 text-xs">
+            <span class="w-4.5 h-4.5 rounded bg-red-500 border border-red-600 shadow-sm"></span>
+            <span class="font-semibold text-gray-700">Foco Crítico (Enfermedad)</span>
+          </div>
+        </div>
+
+        <p class="text-xs text-center text-gray-500 mt-4 leading-relaxed">
+          Los mapas de calor permiten identificar dónde actuar primero con precisión geolocalizada en tu parcela, evitando tratamientos generales e innecesarios a todo el viñedo.
+        </p>
+      </div>
+
+    </div>
+  </section>

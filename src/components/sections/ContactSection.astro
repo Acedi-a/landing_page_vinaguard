@@ -1,0 +1,125 @@
+<!-- ================= CONTACT FORM SECTION ================= -->
+  <section id="contacto" class="py-20 bg-gradient-to-b from-white to-gray-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
+        
+        <!-- Left Side: Contact Information & Branding copy -->
+        <div class="lg:col-span-5 space-y-8 flex flex-col justify-between">
+          <div class="space-y-4">
+            <span class="text-emerald-700 font-bold text-xs uppercase tracking-widest block"><i class="fas fa-paper-plane mr-1"></i> Contacto</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 font-serif">
+              Salva tu cosecha antes de que la enfermedad avance
+            </h2>
+            <div class="w-24 h-1 bg-emerald-600 rounded-full"></div>
+            <p class="text-gray-600 text-sm leading-relaxed">
+              Drones + IA para cuidar mejor tus viñedos. Detectamos focos de riesgo, generamos mapas de calor y te damos recomendaciones claras para actuar con total precisión agronómica.
+            </p>
+          </div>
+
+          <!-- Contact Coordinates -->
+          <div class="space-y-4 text-xs">
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0"><i class="fas fa-location-dot"></i></span>
+              <div>
+                <span class="text-gray-400 block font-bold uppercase text-[9px]">Ubicación</span>
+                <span class="font-extrabold text-gray-900">Tarija, Bolivia</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0"><i class="fab fa-whatsapp"></i></span>
+              <div>
+                <span class="text-gray-400 block font-bold uppercase text-[9px]">WhatsApp</span>
+                <span class="font-extrabold text-gray-900">+591 70000000</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <span class="w-9 h-9 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center shrink-0"><i class="fas fa-envelope"></i></span>
+              <div>
+                <span class="text-gray-400 block font-bold uppercase text-[9px]">Correo Electrónico</span>
+                <span class="font-extrabold text-gray-900">contacto@vinaguard-tarija.com</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Quick trust badges -->
+          <div class="p-4 bg-gray-100 rounded-2xl border border-gray-200">
+            <p class="text-[10px] text-gray-500 uppercase tracking-widest font-extrabold">Tecnología local</p>
+            <p class="text-xs text-gray-700 mt-1">ViñaGuard es un emprendimiento tarijeño enfocado en la agricultura de precisión.</p>
+          </div>
+        </div>
+
+        <!-- Right Side: Clean validation-backed Form -->
+        <div class="lg:col-span-7 bg-white rounded-3xl p-8 shadow-xl border border-gray-100">
+          <h3 class="text-lg font-bold text-gray-950 mb-2">Solicita un diagnóstico preliminar gratuito</h3>
+          <p class="text-xs text-gray-500 mb-6">Completa los campos a continuación y un ingeniero agrónomo de nuestro equipo local te llamará para agendar una visita técnica.</p>
+          
+          <form id="contact-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+            
+            <!-- Grid of Name and Winery -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="form-name" class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1.5">Nombre Completo *</label>
+                <input type="text" id="form-name" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-transparent text-xs text-gray-800" placeholder="Ej. Ricardo Méndez" />
+              </div>
+              <div>
+                <label for="form-bodega" class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1.5">Nombre de Bodega / Viñedo *</label>
+                <input type="text" id="form-bodega" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-transparent text-xs text-gray-800" placeholder="Ej. Viñedos Méndez" />
+              </div>
+            </div>
+
+            <!-- Grid of Location and Hectares -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="form-ubicacion" class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1.5">Ubicación *</label>
+                <select id="form-ubicacion" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-transparent text-xs text-gray-700 bg-white">
+                  <option value="" disabled selected>Selecciona una zona</option>
+                  <option value="Uriondo">Uriondo, Tarija</option>
+                  <option value="Cercado">Cercado, Tarija</option>
+                  <option value="Aviles">Avilés, Tarija</option>
+                  <option value="Otra">Otra región de Bolivia</option>
+                </select>
+              </div>
+              <div>
+                <label for="form-hectareas" class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1.5">Cantidad aprox. de hectáreas *</label>
+                <input type="number" id="form-hectareas" min="1" max="1000" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-transparent text-xs text-gray-800" placeholder="Ej. 12" />
+              </div>
+            </div>
+
+            <!-- Grid of Phone and Selected Plan -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="form-telefono" class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1.5">Teléfono / WhatsApp *</label>
+                <input type="tel" id="form-telefono" required class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-transparent text-xs text-gray-800" placeholder="Ej. +591 70000000" />
+              </div>
+              <div>
+                <label for="form-plan" class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1.5">Plan de Interés</label>
+                <select id="form-plan" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-transparent text-xs text-gray-700 bg-white">
+                  <option value="desconocido">No lo sé, necesito asesoramiento</option>
+                  <option value="pago_por_vuelo">Pago por Vuelo</option>
+                  <option value="paquetes_etapa">Paquetes por Etapa</option>
+                  <option value="contrato_temporada">Contrato por Temporada</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Message Area -->
+            <div>
+              <label for="form-mensaje" class="block text-[10px] font-bold text-gray-500 uppercase tracking-wider mb-1.5">Mensaje o Comentario adicional</label>
+              <textarea id="form-mensaje" rows="4" class="w-full px-4 py-3 rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-transparent text-xs text-gray-800" placeholder="Cuéntanos un poco sobre el estado actual de tu viñedo..."></textarea>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="w-full py-4 bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800 text-white font-bold rounded-xl text-xs uppercase tracking-widest shadow-lg hover:shadow-xl transition-all duration-300">
+              Solicitar diagnóstico <i class="fas fa-paper-plane ml-1.5"></i>
+            </button>
+
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </section>

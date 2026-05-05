@@ -1,0 +1,22 @@
+<!-- ================= CONTACT SUCCESS MODAL ================= -->
+  <div id="success-modal" class="hidden fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl p-6 md:p-8 max-w-md w-full border border-gray-100 shadow-2xl space-y-6 text-center transform scale-95 transition-all duration-300">
+      <div class="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-3xl mx-auto shadow-inner">
+        <i class="fas fa-circle-check"></i>
+      </div>
+      
+      <div class="space-y-2">
+        <h3 class="text-xl font-bold text-gray-950 font-serif">¡Solicitud Registrada Exitosamente!</h3>
+        <p class="text-xs text-gray-600 leading-relaxed">
+          Muchas gracias <span id="modal-user-name" class="font-bold text-emerald-800"></span>. Hemos recibido los datos de <span id="modal-user-winery" class="font-bold"></span> ubicados en <span id="modal-user-location" class="font-bold"></span> (<span id="modal-user-ha"></span> hectáreas).
+        </p>
+        <p class="text-xs text-gray-500 leading-relaxed">
+          Un consultor tecnológico de ViñaGuard se pondrá en contacto contigo al número <strong id="modal-user-phone"></strong> en las próximas horas para coordinar la demostración o visita técnica preliminar.
+        </p>
+      </div>
+
+      <button onclick="closeModal()" class="w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white font-bold rounded-xl text-xs uppercase tracking-widest transition">
+        Entendido, muchas gracias
+      </button>
+    </div>
+  </div>

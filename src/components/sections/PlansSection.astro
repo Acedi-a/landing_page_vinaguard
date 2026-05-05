@@ -1,0 +1,136 @@
+<!-- ================= PLANES DE CONTRATACIÓN (WITH DYNAMIC ESTIMATOR) ================= -->
+  <section id="planes" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <span class="text-emerald-700 font-bold text-xs uppercase tracking-widest block"><i class="fas fa-tags mr-1"></i> Precios de Planes</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 font-serif">
+          Planes flexibles según el tamaño de tu viñedo
+        </h2>
+        <div class="w-24 h-1 bg-gradient-to-r from-emerald-600 to-purple-600 mx-auto rounded-full"></div>
+        <p class="text-gray-600 text-base sm:text-lg">
+          Ofrecemos esquemas que se adaptan a presupuestos de pequeños productores individuales hasta de grandes bodegas industriales de Tarija.
+        </p>
+      </div>
+
+      <!-- Plans Cards Grid (3 Options) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch mb-16 max-w-5xl mx-auto">
+        
+        <!-- Plan 1 -->
+        <div class="bg-gray-50 p-8 rounded-3xl border border-gray-100 flex flex-col justify-between hover:shadow-xl hover:bg-white hover:border-emerald-200 transition duration-300">
+          <div class="space-y-4">
+            <span class="text-[10px] font-bold text-emerald-700 uppercase tracking-widest bg-emerald-50 px-2.5 py-1 rounded-full">Monitoreo puntual</span>
+            <h3 class="text-xl font-bold text-gray-900">Pago por vuelo</h3>
+            <p class="text-xs text-gray-500">
+              Ideal para monitoreos puntuales en épocas críticas de riesgo patológico o de clima húmedo.
+            </p>
+            <div class="pt-4 border-t border-gray-100">
+              <span class="text-[11px] text-gray-400 uppercase font-bold">Precio referencial</span>
+              <p class="text-2xl font-extrabold text-gray-900">Desde 100 Bs <span class="text-xs text-gray-500 font-normal">/ Hectárea</span></p>
+            </div>
+          </div>
+          
+          <div class="space-y-6 pt-6">
+            <p class="text-xs text-gray-600 leading-relaxed">
+              Recomendado para productores medianos que desean evaluar el estado fitosanitario de su viñedo en momentos específicos de la temporada.
+            </p>
+            <a href="#contacto" onclick="setPlanField('pago_por_vuelo')" class="block text-center py-3 bg-gray-900 hover:bg-black text-white text-xs font-bold rounded-xl shadow-md transition">
+              Solicitar Cotización
+            </a>
+          </div>
+        </div>
+
+        <!-- Plan 2 (Highlighted) -->
+        <div class="bg-gradient-to-b from-purple-950 to-indigo-950 text-white p-8 rounded-3xl flex flex-col justify-between shadow-2xl border border-purple-500/20 scale-102 relative overflow-hidden">
+          <div class="absolute top-4 right-4 bg-amber-500 text-purple-950 text-[9px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider shadow">Más popular</div>
+          
+          <div class="space-y-4 relative z-10">
+            <span class="text-[10px] font-bold text-purple-300 uppercase tracking-widest bg-purple-500/20 px-2.5 py-1 rounded-full border border-purple-500/30">Control clave</span>
+            <h3 class="text-xl font-bold text-white">Paquetes por etapa</h3>
+            <p class="text-xs text-gray-300">
+              Ideal para las fases críticas: floración, crecimiento de baya, maduración y precosecha.
+            </p>
+            <div class="pt-4 border-t border-white/10">
+              <span class="text-[11px] text-purple-300 uppercase font-bold">Precio referencial</span>
+              <p class="text-2xl font-extrabold text-white">Consúltanos <span class="text-xs text-purple-200 font-normal">/ Descuento por volumen</span></p>
+            </div>
+          </div>
+          
+          <div class="space-y-6 pt-6 relative z-10">
+            <p class="text-xs text-purple-100/80 leading-relaxed">
+              Permite controlar el viñedo en las etapas biológicas más importantes de la temporada, optimizando tratamientos de forma preventiva y planificada.
+            </p>
+            <a href="#contacto" onclick="setPlanField('paquetes_etapa')" class="block text-center py-3 bg-amber-500 hover:bg-amber-600 text-purple-950 text-xs font-bold rounded-xl shadow-md transition">
+              Solicitar Cotización
+            </a>
+          </div>
+        </div>
+
+        <!-- Plan 3 -->
+        <div class="bg-gray-50 p-8 rounded-3xl border border-gray-100 flex flex-col justify-between hover:shadow-xl hover:bg-white hover:border-emerald-200 transition duration-300">
+          <div class="space-y-4">
+            <span class="text-[10px] font-bold text-purple-700 uppercase tracking-widest bg-purple-50 px-2.5 py-1 rounded-full">Completo corporativo</span>
+            <h3 class="text-xl font-bold text-gray-900">Contrato por temporada</h3>
+            <p class="text-xs text-gray-500">
+              Ideal para grandes bodegas e industrias que requieren monitoreo recurrente continuo.
+            </p>
+            <div class="pt-4 border-t border-gray-100">
+              <span class="text-[11px] text-gray-400 uppercase font-bold">Precio referencial</span>
+              <p class="text-2xl font-extrabold text-gray-900">Cotización <span class="text-xs text-gray-500 font-normal">/ Personalizada</span></p>
+            </div>
+          </div>
+          
+          <div class="space-y-6 pt-6">
+            <p class="text-xs text-gray-600 leading-relaxed">
+              Monitoreo recurrente calendarizado, seguimiento comparativo mensual del vigor foliar y soporte de integración de datos con sistemas de la bodega.
+            </p>
+            <a href="#contacto" onclick="setPlanField('contrato_temporada')" class="block text-center py-3 bg-gray-900 hover:bg-black text-white text-xs font-bold rounded-xl shadow-md transition">
+              Cotizar Lote Completo
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- INTERACTIVE CALCULATOR SECTION -->
+      <div class="max-w-3xl mx-auto bg-gradient-to-br from-emerald-900/15 to-purple-900/15 rounded-3xl p-6 md:p-8 border border-emerald-500/10">
+        <h4 class="text-lg font-bold text-gray-900 mb-4 text-center font-serif">Simula tu presupuesto aproximado</h4>
+        
+        <div class="space-y-6">
+          <!-- Slider Hectares -->
+          <div>
+            <div class="flex justify-between items-center mb-2">
+              <label for="hectareas-calc" class="text-xs font-bold text-gray-700 uppercase tracking-wider">Hectáreas de tu Viñedo:</label>
+              <span class="text-lg font-extrabold text-emerald-800" id="hectareas-val">10 Ha</span>
+            </div>
+            <input type="range" id="hectareas-calc" min="1" max="150" value="10" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-emerald-700" oninput="updateEstimate()" />
+            <div class="flex justify-between text-[10px] text-gray-400 mt-1">
+              <span>1 Ha</span>
+              <span>75 Ha</span>
+              <span>150+ Ha</span>
+            </div>
+          </div>
+
+          <!-- Dynamic Results Box -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center bg-white p-5 rounded-2xl border border-gray-100 shadow-inner">
+            <div>
+              <p class="text-[11px] text-gray-400 uppercase font-bold">Costo Estimado Pago por Vuelo:</p>
+              <p class="text-3xl font-extrabold text-emerald-700" id="estimado-vuelo">1,000 Bs</p>
+              <span class="text-[9px] text-gray-500 block mt-0.5">*Cálculo referencial a 100 Bs por Ha</span>
+            </div>
+            <div class="border-t md:border-t-0 md:border-l border-gray-100 pt-4 md:pt-0 md:pl-5 space-y-2">
+              <h5 class="text-xs font-bold text-gray-900">¿Tienes una bodega grande?</h5>
+              <p class="text-[11px] text-gray-600">
+                A partir de 30 Hectáreas ofrecemos tarifas corporativas especiales por temporada completa.
+              </p>
+              <a href="#contacto" class="inline-flex items-center gap-1.5 text-xs font-bold text-purple-700 hover:text-purple-800">
+                Solicitar descuento corporativo <i class="fas fa-arrow-right text-[10px]"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>

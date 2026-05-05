@@ -1,0 +1,53 @@
+---
+import TarijaMap3D from '../TarijaMap3D.astro';
+---
+
+<!-- ================= COBERTURA DE SERVICIO (TARIJA VALLEY) ================= -->
+  <section id="cobertura" class="py-20 bg-gradient-to-b from-gray-50 to-[var(--color-vine-green-50)]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+        <!-- Left Side: Content info -->
+        <div class="lg:col-span-6 space-y-6">
+          <span class="text-emerald-700 font-bold text-xs uppercase tracking-widest block"><i class="fas fa-map-marked-alt mr-1"></i> Nuestra Cobertura</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 font-serif">
+            Cobertura inicial en el Valle Central de Tarija
+          </h2>
+          <div class="w-24 h-1 bg-emerald-600 rounded-full"></div>
+          <p class="text-gray-600 text-sm">
+            ViñaGuard inicia sus operaciones de manera oficial en las principales zonas vitivinícolas del departamento de Tarija, garantizando una respuesta logística ágil en menos de 24 horas para volar ante cualquier foco de sospecha.
+          </p>
+
+          <!-- Interactive Zone Details Box -->
+          <div class="bg-white p-5 rounded-2xl border border-gray-100 shadow-sm space-y-3" id="cobertura-info-box">
+            <h4 class="text-xs font-bold text-emerald-800 uppercase tracking-widest flex items-center gap-2">
+              <i class="fas fa-location-crosshairs"></i> Región Seleccionada: <span id="cobertura-active-name" class="text-purple-900">Valle Central (General)</span>
+            </h4>
+            <p class="text-xs text-gray-600" id="cobertura-active-desc">
+              Tenemos presencia logística constante en los municipios de Uriondo, Avilés y Cercado para despliegue inmediato de pilotos e ingenieros.
+            </p>
+            <div class="pt-3 border-t border-gray-50 grid grid-cols-2 gap-4 text-[11px]">
+              <div>
+                <span class="text-gray-400 block font-bold uppercase">Disponibilidad</span>
+                <span class="font-extrabold text-emerald-700" id="cobertura-active-time">Inmediata (Lunes a Sábado)</span>
+              </div>
+              <div>
+                <span class="text-gray-400 block font-bold uppercase">Área Operativa</span>
+                <span class="font-extrabold text-purple-900" id="cobertura-active-area">Cercado, Uriondo, Avilés</span>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-xs text-gray-500">
+            *A mediano plazo, el servicio proyecta expandirse de forma paulatina hacia otras regiones vitivinícolas del sur y de Bolivia.
+          </p>
+        </div>
+
+        <!-- Right Side: Real Tarija Municipal Coverage Map -->
+        <div class="lg:col-span-6 flex flex-col justify-center lg:-ml-8 xl:-mr-16">
+          <TarijaMap3D />
+        </div>
+      </div>
+
+    </div>
+  </section>

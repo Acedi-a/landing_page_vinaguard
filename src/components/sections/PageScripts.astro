@@ -1,0 +1,329 @@
+<!-- ================= JAVASCRIPT FOR DYNAMIC INTERACTIVITY ================= -->
+  <script is:inline>
+    // MOBILE MENU TOGGLE
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // Close mobile menu when a link is clicked
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+
+    // INTERACTIVE BEFORE-AFTER COMPARISON SLIDER (TOUCH & MOUSE ENABLED)
+    const compareSlider = document.getElementById('vine-compare-slider');
+    const compareHandle = document.getElementById('compare-handle');
+    const compareOverlayWrapper = document.getElementById('compare-overlay-wrapper');
+    const compareOverlayImg = document.getElementById('compare-overlay-img');
+
+    // Handle responsiveness on window resize so coordinates align
+    function adjustCompareImgWidth() {
+      const sliderWidth = compareSlider.offsetWidth;
+      compareOverlayImg.style.width = sliderWidth + 'px';
+    }
+    
+    window.addEventListener('resize', adjustCompareImgWidth);
+    adjustCompareImgWidth();
+
+    // Slider Dragging Mechanics
+    let isDragging = false;
+
+    function handleSliderMove(clientX) {
+      const rect = compareSlider.getBoundingClientRect();
+      const positionX = clientX - rect.left;
+      let percentage = (positionX / rect.width) * 100;
+      
+      // Restrict percentage between boundaries
+      if (percentage < 0) percentage = 0;
+      if (percentage > 100) percentage = 100;
+      
+      // Apply width and left positions
+      compareHandle.style.left = percentage + '%';
+      compareOverlayWrapper.style.width = percentage + '%';
+    }
+
+    // Mouse events
+    compareSlider.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      handleSliderMove(e.clientX);
+    });
+
+    window.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      handleSliderMove(e.clientX);
+    });
+
+    // Touch events for mobile phones/tablets
+    compareSlider.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      handleSliderMove(e.touches[0].clientX);
+    });
+
+    window.addEventListener('touchend', () => {
+      isDragging = false;
+    });
+
+    window.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      handleSliderMove(e.touches[0].clientX);
+    });
+
+
+    // INTERACTIVE AI DETECTION SIMULATOR DATA
+    const aiSimData = {
+      mildiu: {
+        img: 'https://images.unsplash.com/photo-1516594915697-87eb3b1c14ea?auto=format&fit=crop&w=800&q=80',
+        scannerStyle: 'top: 20%; left: 15%; width: 150px; height: 120px; border-color: #ef4444; background-color: rgba(239, 68, 68, 0.2); box-shadow: 0 0 15px rgba(239, 68, 68, 0.5);',
+        label: 'Mildiu: 94.2% Confianza',
+        status: 'Sector Crítico (Cuadro 4A)',
+        recTitle: 'Alerta Crítica: Infección Activa de Mildiu',
+        recDesc: 'Infección avanzada detectada en el sector noroeste. Se recomienda aplicar fungicida a base de cobre con dosis dirigida en un radio de 15 metros.',
+        recIcon: 'fa-exclamation-triangle',
+        recIconColor: 'text-red-400 bg-red-500/10'
+      },
+      oidio: {
+        img: 'https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?auto=format&fit=crop&w=800&q=80',
+        scannerStyle: 'top: 45%; left: 50%; width: 140px; height: 100px; border-color: #eab308; background-color: rgba(234, 179, 8, 0.2); box-shadow: 0 0 15px rgba(234, 179, 8, 0.5);',
+        label: 'Oídio: 88.7% Confianza',
+        status: 'Riesgo Moderado (Borde Este)',
+        recTitle: 'Alerta Fitosanitaria: Presencia de Oídio',
+        recDesc: 'Foco inicial detectado en hojas basales. Realizar deshoje selectivo para favorecer aireación y aplicar azufre micronizado preventivo en hileras colindantes.',
+        recIcon: 'fa-triangle-exclamation',
+        recIconColor: 'text-yellow-400 bg-yellow-500/10'
+      },
+      botrytis: {
+        img: 'https://images.unsplash.com/photo-1516594915697-87eb3b1c14ea?auto=format&fit=crop&w=800&q=80',
+        scannerStyle: 'top: 10%; left: 60%; width: 120px; height: 120px; border-color: #f97316; background-color: rgba(249, 115, 22, 0.2); box-shadow: 0 0 15px rgba(249, 115, 22, 0.5);',
+        label: 'Botrytis: 91.5% Confianza',
+        status: 'Sector Crítico (Lote Pinot)',
+        recTitle: 'Alerta de Podredumbre: Foco Botrytis',
+        recDesc: 'Humedad ambiental alta propició desarrollo en racimos compactos de uva tinta. Aplicar botriticida específico en áreas húmedas indicadas por el mapa de calor.',
+        recIcon: 'fa-circle-exclamation',
+        recIconColor: 'text-orange-400 bg-orange-500/10'
+      },
+      estres: {
+        img: 'https://images.unsplash.com/photo-1506318137071-a8e063b4bec0?auto=format&fit=crop&w=800&q=80',
+        scannerStyle: 'top: 30%; left: 30%; width: 220px; height: 130px; border-color: #3b82f6; background-color: rgba(59, 130, 246, 0.15); box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);',
+        label: 'Estrés Hídrico: 76.4%',
+        status: 'Riesgo Leve (Cuadro Central)',
+        recTitle: 'Alerta de Riego: Estrés Hídrico Moderado',
+        recDesc: 'Baja reflectancia de clorofila. Se aconseja incrementar los ciclos de riego por goteo en un 15% durante 3 días en este lote particular.',
+        recIcon: 'fa-droplet',
+        recIconColor: 'text-blue-400 bg-blue-500/10'
+      }
+    };
+
+    function selectAISim(type) {
+      // Toggle button classes
+      const buttons = document.querySelectorAll('.ai-sim-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('border-emerald-500/30', 'bg-emerald-950/30', 'active');
+        btn.classList.add('border-slate-800', 'bg-slate-900/50');
+      });
+
+      const activeBtn = document.getElementById(`btn-${type}`);
+      activeBtn.classList.add('border-emerald-500/30', 'bg-emerald-950/30', 'active');
+      activeBtn.classList.remove('border-slate-800', 'bg-slate-900/50');
+
+      // Update simulation graphics
+      const data = aiSimData[type];
+      const imgEl = document.getElementById('sim-image');
+      const boxEl = document.getElementById('sim-scanner-box');
+      const labelEl = document.getElementById('sim-box-label');
+      const statusEl = document.getElementById('sim-box-status');
+      const recIconEl = document.getElementById('sim-rec-icon');
+      const recTitleEl = document.getElementById('sim-rec-title');
+      const recDescEl = document.getElementById('sim-rec-desc');
+
+      // Smooth fade-out before changing src
+      imgEl.style.opacity = 0.3;
+      setTimeout(() => {
+        imgEl.src = data.img;
+        imgEl.style.opacity = 0.8;
+      }, 150);
+
+      // Adjust scanner bounding box
+      boxEl.style.cssText = data.scannerStyle;
+      labelEl.innerText = data.label;
+      statusEl.innerText = data.status;
+
+      // Adjust Recommendation text
+      recTitleEl.innerText = data.recTitle;
+      recDescEl.innerText = data.recDesc;
+
+      // Adjust Icon inside alert
+      recIconEl.className = `p-2 rounded-lg ${data.recIconColor}`;
+      recIconEl.innerHTML = `<i class="fas ${data.recIcon}"></i>`;
+    }
+
+
+    // INTERACTIVE ESTIMATOR CALCULATOR
+    function updateEstimate() {
+      const ha = parseInt(document.getElementById('hectareas-calc').value);
+      document.getElementById('hectareas-val').innerText = `${ha} Ha`;
+
+      // Cost calculation: 100 Bs per hectare (reference minimum)
+      const flightCost = ha * 100;
+      
+      // Formatting to currency
+      const formattedCost = new Intl.NumberFormat('es-BO', { style: 'currency', currency: 'BOB', minimumFractionDigits: 0 }).format(flightCost);
+      document.getElementById('estimado-vuelo').innerText = formattedCost.replace('BOB', '') + ' Bs';
+    }
+    // Initialize estimate once on page load
+    updateEstimate();
+
+
+    // INTERACTIVE TARIJA COVERAGE MAP HOVER/CLICK
+    const coverageRegions = {
+      general: {
+        name: 'Valle Central (General)',
+        desc: 'Tenemos presencia logística constante en los municipios de Uriondo, Avilés y Cercado para despliegue inmediato de pilotos e ingenieros.',
+        time: 'Inmediata (Lunes a Sábado)',
+        area: 'Cercado, Uriondo, Avilés'
+      },
+      uriondo: {
+        name: 'Valle de Uriondo (El Valle)',
+        desc: 'Región de mayor producción vitícola. Contamos con una base técnica de operaciones en Uriondo que permite vuelos de drones en menos de 12 horas desde la solicitud.',
+        time: '< 12 horas hábiles',
+        area: 'Fuerte presencia logística',
+        activeStroke: '#047857'
+      },
+      tarija: {
+        name: 'Cercado / Tarija ciudad',
+        desc: 'Centro administrativo y de coordinación técnica. Oficinas de atención comercial ideales para planificar calendarios de parcelas grandes y bodegas industriales.',
+        time: 'Inmediata (Mismo día)',
+        area: 'Cobertura administrativa total',
+        activeStroke: '#7e22ce'
+      },
+      yunchara: {
+        name: 'Avilés / Yunchará',
+        desc: 'Zona vitícola de altura dentro de la provincia Avilés. La atención se coordina por ventana climática y disponibilidad de vuelo.',
+        time: '< 24 horas de espera',
+        area: 'Soporte y vuelo especializado',
+        activeStroke: '#b45309'
+      },
+      'san-lorenzo': {
+        name: 'San Lorenzo / Méndez',
+        desc: 'Municipio priorizado para expansión por cercanía al valle central y presencia de productores agrícolas con potencial de monitoreo recurrente.',
+        time: 'Bajo coordinación previa',
+        area: 'Expansión planificada'
+      },
+      'el-puente': {
+        name: 'El Puente / Méndez',
+        desc: 'Zona considerada para fases posteriores de cobertura. Las visitas técnicas se planifican por rutas agrupadas.',
+        time: 'Bajo coordinación previa',
+        area: 'Expansión planificada'
+      },
+      padcaya: {
+        name: 'Padcaya / Arce',
+        desc: 'Municipio en evaluación para despliegues programados, especialmente en campañas agrícolas con requerimientos de diagnóstico aéreo.',
+        time: 'Bajo coordinación previa',
+        area: 'Expansión planificada'
+      },
+      bermejo: {
+        name: 'Bermejo / Arce',
+        desc: 'Cobertura futura sujeta a agenda técnica y concentración de solicitudes en la zona sur del departamento.',
+        time: 'Bajo coordinación previa',
+        area: 'Expansión planificada'
+      },
+      'entre-rios': {
+        name: 'Entre Ríos / O’Connor',
+        desc: 'Municipio contemplado para expansión gradual mediante vuelos agrupados y coordinación logística con productores locales.',
+        time: 'Bajo coordinación previa',
+        area: 'Expansión planificada'
+      },
+      yacuiba: {
+        name: 'Yacuiba / Gran Chaco',
+        desc: 'Zona de expansión futura hacia el Chaco tarijeño, con atención sujeta a agenda operativa y condiciones de traslado.',
+        time: 'Bajo coordinación previa',
+        area: 'Expansión planificada'
+      },
+      carapari: {
+        name: 'Caraparí / Gran Chaco',
+        desc: 'Cobertura proyectada para etapas posteriores, con vuelos coordinados por paquetes regionales.',
+        time: 'Bajo coordinación previa',
+        area: 'Expansión planificada'
+      },
+      'villa-montes': {
+        name: 'Villa Montes / Gran Chaco',
+        desc: 'Municipio en fase de expansión futura. La disponibilidad depende de rutas programadas hacia el este del departamento.',
+        time: 'Bajo coordinación previa',
+        area: 'Expansión planificada'
+      }
+    };
+
+    function selectMapRegion(regionId, options = {}) {
+      const data = coverageRegions[regionId] || coverageRegions.general;
+
+      document.getElementById('cobertura-active-name').innerText = data.name;
+      document.getElementById('cobertura-active-desc').innerText = data.desc;
+      document.getElementById('cobertura-active-time').innerText = data.time;
+      document.getElementById('cobertura-active-area').innerText = data.area;
+
+      if (!options.skipMapSync) {
+        window.dispatchEvent(new CustomEvent('tarija-map:select-region', { detail: { region: regionId } }));
+      }
+    }
+
+    window.selectMapRegion = selectMapRegion;
+    window.addEventListener('tarija:select', event => {
+      selectMapRegion(event.detail.region, { skipMapSync: true });
+    });
+
+
+    // FORCE PRE-SELECTED PLAN VALUE FROM PLAN CARD CLICKS
+    function setPlanField(planValue) {
+      const planDropdown = document.getElementById('form-plan');
+      if (planDropdown) {
+        planDropdown.value = planValue;
+      }
+    }
+
+
+    // CONTACT FORM CLIENT-SIDE SUBMISSION & MODAL CONFIRMATION
+    function handleFormSubmit(event) {
+      event.preventDefault();
+
+      // Collect data to display in custom success modal
+      const name = document.getElementById('form-name').value;
+      const bodega = document.getElementById('form-bodega').value;
+      const ubicacion = document.getElementById('form-ubicacion').value;
+      const hectareas = document.getElementById('form-hectareas').value;
+      const telefono = document.getElementById('form-telefono').value;
+
+      document.getElementById('modal-user-name').innerText = name;
+      document.getElementById('modal-user-winery').innerText = bodega;
+      document.getElementById('modal-user-location').innerText = ubicacion;
+      document.getElementById('modal-user-ha').innerText = hectareas;
+      document.getElementById('modal-user-phone').innerText = telefono;
+
+      // Show modal with animation
+      const modal = document.getElementById('success-modal');
+      modal.classList.remove('hidden');
+      modal.firstElementChild.classList.remove('scale-95', 'opacity-0');
+      modal.firstElementChild.classList.add('scale-100', 'opacity-100');
+
+      // Reset form
+      document.getElementById('contact-form').reset();
+    }
+
+    function closeModal() {
+      const modal = document.getElementById('success-modal');
+      modal.firstElementChild.classList.remove('scale-100', 'opacity-100');
+      modal.firstElementChild.classList.add('scale-95', 'opacity-0');
+      setTimeout(() => {
+        modal.classList.add('hidden');
+      }, 200);
+    }
+  </script>
